@@ -9,4 +9,12 @@ const GROUP_PLAYER: String =  "Player"
 @onready var gravitydown = false
 
 var volume: int
-var 
+var volume_bar_value: float = 2 # default value
+
+var upgrades: Dictionary = {
+	jump1    = false,
+	jump2    = false,
+	bullet_speed = false,
+	walk_speed   = false,
+	grav_down    = false
+}

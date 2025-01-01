@@ -26,7 +26,7 @@ const MAXFALL: float = 400
 const INVINCFRAMES: float = 0.32
 
 var jumpvelochurt: float = -100
-var jumpveloc: float = -200
+var jumpveloc: float = -300
 var runspeed: float = 150
 var life: float = 3
 enum PlAYER_STATE { idle, run, jump, fall, hurt}
@@ -37,6 +37,14 @@ var can_move: bool = true
 var Jump_timer = 0.0
 var gravity = 250
 var in_menu = false
+
+var upgrades: Dictionary = {
+	jump1        = false,
+	jump2        = false,
+	bullet_speed = false,
+	walk_speed   = false,
+	grav_down    = false
+}
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Esc"):
@@ -57,6 +65,14 @@ func _input(event: InputEvent) -> void:
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	volume.value = Gameman.volume_bar_value
+	upgrades = Gameman.upgrades
+	refresh_buttons()
+	
+	print(upgrades)
+	print(Gameman.upgrades)
+	
 	color_rect.hide()
 	color_rect2.hide()
 	color_rect3.hide()
@@ -181,6 +197,19 @@ func applyhit() -> void:
 	go_patrickbateman_sigma_mode()
 	getpatrickbatemanjumps()
 	Soundman.play_clip(sounds, Soundman.SOUNDHURT)
+
+func refresh_buttons():
+	jump_up_1.button_pressed    = upgrades.jump1
+	jump_up_2.button_pressed    = upgrades.jump2
+	bullet_speed.button_pressed = upgrades.bullet_speed
+	walk_speed.button_pressed   = upgrades.walk_speed
+	gravity_down.button_pressed = upgrades.grav_down
+	
+	_on_jump_up_1_pressed()
+	_on_jump_up_2_pressed()
+	_on_bullet_speed_pressed()
+	_on_walk_speed_pressed()
+	_on_gravity_down_pressed()
 
 func _on_hithox_area_entered(_area):
 	applyhit()
