@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://dr12sis0qdpv6"]
+
+[ext_resource type="Texture2D" uid="uid://4rnbatioeqm4" path="res://Assets/Art/Levels/Sky.png" id="1_2814j"]
+[ext_resource type="Texture2D" uid="uid://ck8brixqujh2p" path="res://Assets/Art/Levels/Clouds.png" id="2_fr8ik"]
+[ext_resource type="Texture2D" uid="uid://430r7kuun8cm" path="res://Assets/Art/Levels/Trees.png" id="2_s1jdc"]
+
+[node name="GrassParallax" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(960, 960)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Sky"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_2814j")
+centered = false
+
+[node name="Clouds" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-2, -1726)
+motion_scale = Vector2(0.75, 0.75)
+motion_mirroring = Vector2(960, 960)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Clouds"]
+position = Vector2(0, -60)
+scale = Vector2(2, 2)
+texture = ExtResource("2_fr8ik")
+centered = false
+
+[node name="Trees_Grass" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, -98)
+motion_scale = Vector2(1.1, 1.1)
+motion_mirroring = Vector2(960, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Trees_Grass"]
+position = Vector2(0, 37)
+scale = Vector2(2, 1)
+texture = ExtResource("2_s1jdc")
+centered = false

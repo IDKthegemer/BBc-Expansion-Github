@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://btro38g183fxx"]
+
+[ext_resource type="Script" path="res://Scenes/Levels/theendquestion.gd" id="1_3r6fj"]
+[ext_resource type="Texture2D" uid="uid://v8vmmepcs842" path="res://Assets/Art/Levels/Brownie.png" id="1_si7yo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6i73v"]
+font_size = 64
+
+[sub_resource type="PrismMesh" id="PrismMesh_5o2av"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3r6fj")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(512, 300)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1024.0
+offset_bottom = 600.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 374.0
+offset_top = 249.0
+offset_right = 651.0
+offset_bottom = 337.0
+text = "The end?"
+label_settings = SubResource("LabelSettings_6i73v")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(1, 1, 0.67451, 0.145098)
+position = Vector2(515.595, 300.728)
+rotation = -3.14159
+scale = Vector2(313.69, 597.044)
+mesh = SubResource("PrismMesh_5o2av")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(545, 563)
+rotation = -0.154748
+scale = Vector2(7, 7)
+texture = ExtResource("1_si7yo")

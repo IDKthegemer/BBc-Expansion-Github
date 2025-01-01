@@ -1,0 +1,100 @@
+[gd_scene load_steps=14 format=3 uid="uid://r6sene01gbbp"]
+
+[ext_resource type="PackedScene" uid="uid://ckt4y83v0yf2i" path="res://Enemies/Enemy_base/enemy_base.tscn" id="1_d6xvu"]
+[ext_resource type="Script" path="res://Enemies/Chicken/Chicken.gd" id="2_glaeo"]
+[ext_resource type="Texture2D" uid="uid://dfmdbso7yu2dv" path="res://Assets/Art/Enemies/Chicken-Sheet.png" id="3_g0ltf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii63u"]
+atlas = ExtResource("3_g0ltf")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_128s4"]
+atlas = ExtResource("3_g0ltf")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qr1nd"]
+atlas = ExtResource("3_g0ltf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkhte"]
+atlas = ExtResource("3_g0ltf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l17tt"]
+atlas = ExtResource("3_g0ltf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_or8hj"]
+atlas = ExtResource("3_g0ltf")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyrtf"]
+atlas = ExtResource("3_g0ltf")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xwfru"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ii63u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_128s4")
+}],
+"loop": false,
+"name": &"Jump",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qr1nd")
+}, {
+"duration": 0.9,
+"texture": SubResource("AtlasTexture_pkhte")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l17tt")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_or8hj")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_hyrtf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_egntk"]
+size = Vector2(9.5, 11.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_etclf"]
+radius = 9.05539
+
+[node name="Chicken" instance=ExtResource("1_d6xvu")]
+script = ExtResource("2_glaeo")
+defaultdir = 1
+health = 1
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="0"]
+position = Vector2(0, -3)
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+position = Vector2(0, -5)
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_xwfru")
+animation = &"Jump"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, 1.25)
+shape = SubResource("RectangleShape2D_egntk")
+
+[node name="jumtim" type="Timer" parent="." index="3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hithox" index="0"]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_etclf")
+
+[connection signal="timeout" from="jumtim" to="." method="_on_jumtim_timeout"]

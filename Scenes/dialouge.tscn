@@ -1,0 +1,80 @@
+[gd_scene load_steps=7 format=3 uid="uid://db8ph6qd8lnnq"]
+
+[ext_resource type="Script" path="res://Scripts/Dialouge.gd" id="1_uklg8"]
+[ext_resource type="PackedScene" uid="uid://c2cg5wod4unuw" path="res://Scenes/Levels/level1.tscn" id="2_7we7n"]
+[ext_resource type="Texture2D" uid="uid://dvlaee6k4qlxe" path="res://Assets/Art/Player/DeadBug.png" id="2_8exbo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ynsjl"]
+font_size = 256
+
+[sub_resource type="Animation" id="Animation_2bf83"]
+resource_name = "Whiterectanimation"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Whiterect:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(71, 40), Vector2(142, 80), Vector2(284, 160)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r2lcg"]
+_data = {
+"Whiterectanimation": SubResource("Animation_2bf83")
+}
+
+[node name="Dialouge" type="Node2D"]
+script = ExtResource("1_uklg8")
+Dialougetext = Array[String](["Huh?", "Ribbit ribbit (not bug speak)", "HUH?", "Ribbit Time ribbit (definetly frog speak)", "Oh Lime frog", "No Time frog", "You speak fluent bug?", "Ribbit ribbit (Ribbit ribbit)", "Do you, wait a minute, I died already?", "Huh?", "No youre questioning where"])
+nextscene = ExtResource("2_7we7n")
+
+[node name="Side bars" type="ColorRect" parent="."]
+offset_right = 1023.0
+offset_bottom = 599.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 23.0
+offset_top = 399.0
+offset_right = 1003.0
+offset_bottom = 582.0
+scale = Vector2(0.979205, 0.974709)
+color = Color(0.165656, 0.165656, 0.165656, 1)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 37.0
+offset_bottom = 37.0
+scale = Vector2(24.7237, 4.7694)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 7.0
+offset_right = 4694.0
+offset_bottom = 2808.0
+scale = Vector2(0.110293, 0.120652)
+text = "..."
+label_settings = SubResource("LabelSettings_ynsjl")
+
+[node name="Sprite2D" type="Sprite2D" parent="ColorRect"]
+position = Vector2(64, -63)
+texture = ExtResource("2_8exbo")
+
+[node name="Whiterect" type="ColorRect" parent="."]
+scale = Vector2(20.2883, 6.18987)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r2lcg")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

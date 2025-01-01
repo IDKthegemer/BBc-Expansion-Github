@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dauc8axowgb16"]
+
+[ext_resource type="Script" path="res://Scripts/BasicUpgrade.gd" id="1_vygr2"]
+[ext_resource type="Texture2D" uid="uid://csktud8cnh36d" path="res://Assets/Art/Levels/UpgradeSprite.png" id="2_8ute1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mqxwc"]
+size = Vector2(8, 32)
+
+[node name="BasicUpgrade" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_vygr2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_mqxwc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8ute1")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
