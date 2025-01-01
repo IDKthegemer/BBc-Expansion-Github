@@ -219,7 +219,7 @@ one_shot = true
 wait_time = 0.4
 one_shot = true
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Menu" type="ColorRect" parent="."]
 process_mode = 3
 z_index = 1
 offset_left = -56.0
@@ -229,7 +229,7 @@ offset_bottom = -35.0
 scale = Vector2(2.64432, 2.62916)
 color = Color(0.462291, 0.462291, 0.462291, 1)
 
-[node name="Label" type="Label" parent="ColorRect"]
+[node name="Label" type="Label" parent="Menu"]
 layout_mode = 0
 offset_left = 10.5887
 offset_right = 720.589
@@ -238,7 +238,7 @@ scale = Vector2(0.0293976, 0.0350075)
 text = "Menu"
 label_settings = SubResource("LabelSettings_sy6ut")
 
-[node name="Button" type="Button" parent="ColorRect"]
+[node name="Exit" type="Button" parent="Menu"]
 layout_mode = 0
 offset_left = 12.07
 offset_top = 34.7052
@@ -247,7 +247,7 @@ offset_bottom = 65.7052
 scale = Vector2(0.161149, 0.173797)
 text = "Exit"
 
-[node name="Button5" type="Button" parent="ColorRect"]
+[node name="Settings" type="Button" parent="Menu"]
 layout_mode = 0
 offset_left = 12.1014
 offset_top = 22.821
@@ -257,7 +257,7 @@ scale = Vector2(0.161149, 0.173797)
 text = "Settings
 "
 
-[node name="Button3" type="Button" parent="ColorRect"]
+[node name="ResetLevel" type="Button" parent="Menu"]
 layout_mode = 0
 offset_left = 12.07
 offset_top = 28.7052
@@ -266,7 +266,7 @@ offset_bottom = 59.7052
 scale = Vector2(0.161149, 0.173797)
 text = "Reset level"
 
-[node name="Button2" type="Button" parent="ColorRect"]
+[node name="Return" type="Button" parent="Menu"]
 layout_mode = 0
 offset_left = 12.07
 offset_top = 11.41
@@ -275,7 +275,7 @@ offset_bottom = 42.41
 scale = Vector2(0.161149, 0.173797)
 text = "Return"
 
-[node name="Button4" type="Button" parent="ColorRect"]
+[node name="Upgrades" type="Button" parent="Menu"]
 layout_mode = 0
 offset_left = 12.07
 offset_top = 17.116
@@ -284,7 +284,7 @@ offset_bottom = 48.116
 scale = Vector2(0.161149, 0.173797)
 text = "Upgrades"
 
-[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+[node name="UpgradeMenu" type="ColorRect" parent="Menu"]
 visible = false
 layout_mode = 0
 offset_left = 8.31972
@@ -293,7 +293,7 @@ offset_right = 34.3197
 offset_bottom = 54.0603
 color = Color(0.525101, 0.525101, 0.525101, 1)
 
-[node name="JumpUp1" type="CheckButton" parent="ColorRect/ColorRect"]
+[node name="JumpUp1" type="CheckButton" parent="Menu/UpgradeMenu"]
 layout_mode = 0
 offset_left = -0.378169
 offset_top = 4.18385
@@ -302,7 +302,7 @@ offset_bottom = 35.1838
 scale = Vector2(0.145607, 0.129829)
 text = "Jump Upgrade #1"
 
-[node name="JumpUp2" type="CheckButton" parent="ColorRect/ColorRect"]
+[node name="JumpUp2" type="CheckButton" parent="Menu/UpgradeMenu"]
 layout_mode = 0
 offset_left = -0.378169
 offset_top = 6.84627
@@ -311,7 +311,7 @@ offset_bottom = 37.8463
 scale = Vector2(0.145607, 0.129829)
 text = "Jump Upgrade #2"
 
-[node name="BulletSpeed" type="CheckButton" parent="ColorRect/ColorRect"]
+[node name="BulletSpeed" type="CheckButton" parent="Menu/UpgradeMenu"]
 layout_mode = 0
 offset_left = -0.378169
 offset_top = 10.2694
@@ -320,7 +320,7 @@ offset_bottom = 41.2694
 scale = Vector2(0.145607, 0.129829)
 text = "Bullet Speed up"
 
-[node name="WalkSpeed" type="CheckButton" parent="ColorRect/ColorRect"]
+[node name="WalkSpeed" type="CheckButton" parent="Menu/UpgradeMenu"]
 layout_mode = 0
 offset_top = 13.0
 offset_right = 184.0
@@ -328,7 +328,7 @@ offset_bottom = 44.0
 scale = Vector2(0.146, 0.13)
 text = "Walk Speed Up"
 
-[node name="GravityDown" type="CheckButton" parent="ColorRect/ColorRect"]
+[node name="GravityDown" type="CheckButton" parent="Menu/UpgradeMenu"]
 layout_mode = 0
 offset_top = 16.8035
 offset_right = 184.0
@@ -336,7 +336,7 @@ offset_bottom = 47.8035
 scale = Vector2(0.146, 0.13)
 text = "Gravity Down"
 
-[node name="CloseButton" type="Button" parent="ColorRect/ColorRect"]
+[node name="CloseButton" type="Button" parent="Menu/UpgradeMenu"]
 layout_mode = 0
 offset_left = 0.756338
 offset_top = 1.14105
@@ -345,7 +345,7 @@ offset_bottom = 32.141
 scale = Vector2(0.117898, 0.0944752)
 text = "X"
 
-[node name="ColorRect2" type="ColorRect" parent="ColorRect"]
+[node name="SettingMenu" type="ColorRect" parent="Menu"]
 layout_mode = 0
 offset_left = 11.0
 offset_top = 27.0
@@ -353,7 +353,7 @@ offset_right = 31.0
 offset_bottom = 50.0
 color = Color(0.621524, 0.621524, 0.621524, 1)
 
-[node name="Label" type="Label" parent="ColorRect/ColorRect2"]
+[node name="SettingLabel" type="Label" parent="Menu/SettingMenu"]
 layout_mode = 0
 offset_left = 3.74859
 offset_top = 0.00482297
@@ -363,7 +363,7 @@ scale = Vector2(0.0128882, 0.0153476)
 text = "Settings"
 label_settings = SubResource("LabelSettings_sy6ut")
 
-[node name="Volume" type="HSlider" parent="ColorRect/ColorRect2"]
+[node name="Volume" type="HSlider" parent="Menu/SettingMenu"]
 layout_mode = 0
 offset_left = 4.8831
 offset_top = 6.47077
@@ -375,7 +375,7 @@ max_value = 3.0
 step = 0.1
 value = 2.0
 
-[node name="Close2" type="Button" parent="ColorRect/ColorRect2"]
+[node name="Close2" type="Button" parent="Menu/SettingMenu"]
 layout_mode = 0
 offset_left = 0.723241
 offset_top = 0.765522
@@ -384,7 +384,7 @@ offset_bottom = 31.7655
 scale = Vector2(0.070948, 0.070948)
 text = "x"
 
-[node name="Label" type="Label" parent="."]
+[node name="LifeLabel" type="Label" parent="."]
 z_index = 1
 offset_left = -207.0
 offset_top = -122.0
@@ -394,7 +394,7 @@ scale = Vector2(0.117848, 0.122644)
 text = "S"
 label_settings = SubResource("LabelSettings_rgsmq")
 
-[node name="ColorRect2" type="ColorRect" parent="Label"]
+[node name="ColorRect2" type="ColorRect" parent="LifeLabel"]
 show_behind_parent = true
 layout_mode = 0
 offset_left = 209.525
@@ -404,7 +404,7 @@ offset_bottom = 466.68
 scale = Vector2(-6.41917, -9.69473)
 color = Color(0.211338, 0.278106, 0.312957, 1)
 
-[node name="Label" type="Label" parent="Label"]
+[node name="Label" type="Label" parent="LifeLabel"]
 layout_mode = 0
 offset_left = -33.942
 offset_top = 8.1537
@@ -414,7 +414,7 @@ scale = Vector2(0.494838, 0.222653)
 text = "Life"
 label_settings = SubResource("LabelSettings_baajb")
 
-[node name="Label2" type="Label" parent="."]
+[node name="CoinsLabel" type="Label" parent="."]
 z_index = 1
 offset_left = -175.0
 offset_top = -122.0
@@ -424,7 +424,7 @@ scale = Vector2(0.117848, 0.122644)
 text = "S"
 label_settings = SubResource("LabelSettings_rgsmq")
 
-[node name="ColorRect2" type="ColorRect" parent="Label2"]
+[node name="ColorRect2" type="ColorRect" parent="CoinsLabel"]
 show_behind_parent = true
 layout_mode = 0
 offset_left = 526.101
@@ -434,7 +434,7 @@ offset_bottom = 463.991
 scale = Vector2(-14.4622, -9.69473)
 color = Color(0.211338, 0.278106, 0.312957, 1)
 
-[node name="Label" type="Label" parent="Label2"]
+[node name="Label" type="Label" parent="CoinsLabel"]
 layout_mode = 0
 offset_left = -33.942
 offset_top = 8.1537
@@ -451,15 +451,15 @@ one_shot = true
 [connection signal="area_entered" from="Hithox" to="." method="_on_hithox_area_entered"]
 [connection signal="timeout" from="AhhparytheplatypusthisismySIGMAINATOR" to="." method="_on_ahhparytheplatypusthisismy_sigmainator_timeout"]
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
-[connection signal="pressed" from="ColorRect/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="ColorRect/Button5" to="." method="_on_button_5_pressed"]
-[connection signal="pressed" from="ColorRect/Button3" to="." method="_on_button_3_pressed"]
-[connection signal="pressed" from="ColorRect/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="ColorRect/Button4" to="." method="_on_button_4_pressed"]
-[connection signal="pressed" from="ColorRect/ColorRect/JumpUp1" to="." method="_on_jump_up_1_pressed"]
-[connection signal="pressed" from="ColorRect/ColorRect/JumpUp2" to="." method="_on_jump_up_2_pressed"]
-[connection signal="pressed" from="ColorRect/ColorRect/BulletSpeed" to="." method="_on_bullet_speed_pressed"]
-[connection signal="pressed" from="ColorRect/ColorRect/WalkSpeed" to="." method="_on_walk_speed_pressed"]
-[connection signal="pressed" from="ColorRect/ColorRect/GravityDown" to="." method="_on_gravity_down_pressed"]
-[connection signal="pressed" from="ColorRect/ColorRect/CloseButton" to="." method="_on_close_button_pressed"]
-[connection signal="pressed" from="ColorRect/ColorRect2/Close2" to="." method="_on_close_2_pressed"]
+[connection signal="pressed" from="Menu/Exit" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Menu/Settings" to="." method="_on_button_5_pressed"]
+[connection signal="pressed" from="Menu/ResetLevel" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="Menu/Return" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Menu/Upgrades" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="Menu/UpgradeMenu/JumpUp1" to="." method="_on_jump_up_1_pressed"]
+[connection signal="pressed" from="Menu/UpgradeMenu/JumpUp2" to="." method="_on_jump_up_2_pressed"]
+[connection signal="pressed" from="Menu/UpgradeMenu/BulletSpeed" to="." method="_on_bullet_speed_pressed"]
+[connection signal="pressed" from="Menu/UpgradeMenu/WalkSpeed" to="." method="_on_walk_speed_pressed"]
+[connection signal="pressed" from="Menu/UpgradeMenu/GravityDown" to="." method="_on_gravity_down_pressed"]
+[connection signal="pressed" from="Menu/UpgradeMenu/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="Menu/SettingMenu/Close2" to="." method="_on_close_2_pressed"]

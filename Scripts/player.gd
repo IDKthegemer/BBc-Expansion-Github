@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 class_name Player
 
-@onready var label = $Label
-@onready var color_rect = $ColorRect
+@onready var Life = $LifeLabel
+@onready var Menu = $Menu
 @onready var sprite = $Sprite2D
 @onready var animation_player = $AnimationPlayer
 @onready var sounds = $Sounds
@@ -11,22 +11,22 @@ class_name Player
 @onready var invinc = $Invincibility
 @onready var ahhparytheplatypusthisismy_sigmainator = $AhhparytheplatypusthisismySIGMAINATOR
 @onready var hurt_timer = $HurtTimer
-@onready var label_2 = $Label2
+@onready var Coins = $CoinsLabel
 @onready var coyote_timer = $CoyoteTimer
-@onready var color_rect2 = $ColorRect/ColorRect
-@onready var jump_up_1 = $ColorRect/ColorRect/JumpUp1
-@onready var jump_up_2 = $ColorRect/ColorRect/JumpUp2
-@onready var bullet_speed = $ColorRect/ColorRect/BulletSpeed
-@onready var walk_speed: CheckButton = $ColorRect/ColorRect/WalkSpeed
-@onready var gravity_down: CheckButton = $ColorRect/ColorRect/GravityDown
-@onready var color_rect3: ColorRect = $ColorRect/ColorRect2
-@onready var volume: HSlider = $ColorRect/ColorRect2/Volume
+@onready var upgrademenu = $Menu/UpgradeMenu
+@onready var jump_up_1 = $Menu/UpgradeMenu/JumpUp1
+@onready var jump_up_2 = $Menu/UpgradeMenu/JumpUp2
+@onready var bullet_speed = $Menu/UpgradeMenu/BulletSpeed
+@onready var walk_speed: CheckButton = $Menu/UpgradeMenu/WalkSpeed
+@onready var gravity_down: CheckButton = $Menu/UpgradeMenu/GravityDown
+@onready var Settingmenu: ColorRect = $Menu/SettingMenu
+@onready var volume: HSlider = $Menu/SettingMenu/Volume
 
 const MAXFALL: float = 400
 const INVINCFRAMES: float = 0.32
 
 var jumpvelochurt: float = -100
-var jumpveloc: float = -200
+var jumpveloc: float = -250
 var runspeed: float = 150
 var life: float = 3
 enum PlAYER_STATE { idle, run, jump, fall, hurt}
@@ -35,21 +35,10 @@ var invincinble: bool = false
 var coins = 0
 var can_move: bool = true
 var Jump_timer = 0.0
-var gravity = 250
+var gravity = 400
 var in_menu = false
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("Esc"):
-		if in_menu == false:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			color_rect.show()
-			get_tree().paused = true
-			in_menu = true
-		elif in_menu == true:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			color_rect.hide()
-			get_tree().paused = false
-			in_menu = false
 	
 	if event.is_action_released("Jump"):
 		if velocity.y < 0.0:
@@ -57,9 +46,9 @@ func _input(event: InputEvent) -> void:
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	color_rect.hide()
-	color_rect2.hide()
-	color_rect3.hide()
+	Menu.hide()
+	upgrademenu.hide()
+	Settingmenu.hide()
 	jump_up_1.hide()
 	jump_up_2.hide()
 	bullet_speed.hide()
@@ -91,8 +80,8 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("Shoot") == true:
 		shoot()
-	label.text = str(life)
-	label_2.text = str(coins)
+	Life.text = str(life)
+	Coins.text = str(coins)
 	get_input()
 	move_and_slide()
 	
@@ -195,30 +184,35 @@ func _on_hurt_timer_timeout():
 func _on_button_pressed():
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/Levels/mainmenu.tscn")
+
 func _on_button_2_pressed():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	color_rect.hide()
+	Menu.hide()
 	get_tree().paused = false
+
 func _on_button_3_pressed():
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+
 func GetCoins():
 	coins += 1
+
 func _on_button_4_pressed():
-	color_rect2.show()
+	upgrademenu.show()
 func _on_jump_up_1_pressed():
 	if jump_up_1.button_pressed == true:
-		jumpveloc -= 40
+		jumpveloc -= 150
 	elif  jump_up_1.button_pressed == false:
-		jumpveloc += 40
+		jumpveloc += 150
 		
 func _on_close_button_pressed():
-	color_rect2.hide()
+	upgrademenu.hide()
+	
 func _on_jump_up_2_pressed():
 	if jump_up_2.button_pressed == true:
-		jumpveloc -= 45
+		jumpveloc -= 150
 	elif  jump_up_2.button_pressed == false:
-		jumpveloc += 45
+		jumpveloc += 150
 
 func _on_bullet_speed_pressed():
 	if bullet_speed.button_pressed == true:
@@ -234,12 +228,12 @@ func _on_walk_speed_pressed() -> void:
 
 func _on_gravity_down_pressed() -> void:
 	if gravity_down.button_pressed == true:
-		gravity = 170
+		gravity = 350
 	if gravity_down.button_pressed == false:
-		gravity = 250
+		gravity = 500
 
 func _on_button_5_pressed() -> void:
-	color_rect3.show()
+	Settingmenu.show()
 
 func _on_close_2_pressed() -> void:
-	color_rect3.hide()
+	Settingmenu.hide()

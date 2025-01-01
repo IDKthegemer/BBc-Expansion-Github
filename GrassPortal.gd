@@ -1,12 +1,12 @@
 extends Area2D
 
 @onready var color_rect = $ColorRect
-@export var player = Node2D
 @export var current_texture = Texture
 @export var nextlevel = PackedScene
 @onready var sprite_2d = $Sprite2D
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var portal = $"."
+@onready var player = $"../../Player"
 
 func _ready():
 	animated_sprite_2d.visible = false
