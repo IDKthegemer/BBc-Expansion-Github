@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://8wl82vnwx6vg"]
+
+[ext_resource type="Texture2D" uid="uid://bqsbr5eu1v7u8" path="res://Assets/Art/Levels/CaveSky.png" id="1_xhsnt"]
+[ext_resource type="Texture2D" uid="uid://ck8brixqujh2p" path="res://Assets/Art/Levels/Clouds.png" id="2_i4fpc"]
+[ext_resource type="Texture2D" uid="uid://bwchvju45ano2" path="res://Assets/Art/Levels/Rocks.png" id="3_33usx"]
+
+[node name="CaveParallax" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(960, 960)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Sky"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_xhsnt")
+centered = false
+
+[node name="Clouds" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-2, -1726)
+motion_scale = Vector2(0.75, 0.75)
+motion_mirroring = Vector2(960, 960)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Clouds"]
+position = Vector2(0, -60)
+scale = Vector2(2, 2)
+texture = ExtResource("2_i4fpc")
+centered = false
+
+[node name="Rocks" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, -98)
+motion_scale = Vector2(1.1, 1.1)
+motion_mirroring = Vector2(960, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Rocks"]
+position = Vector2(0, 37)
+scale = Vector2(2, 1)
+texture = ExtResource("3_33usx")
+centered = false

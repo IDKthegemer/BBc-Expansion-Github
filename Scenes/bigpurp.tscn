@@ -1,0 +1,95 @@
+[gd_scene load_steps=14 format=3 uid="uid://7e58rsdux4hm"]
+
+[ext_resource type="PackedScene" uid="uid://ckt4y83v0yf2i" path="res://Enemies/Enemy_base/enemy_base.tscn" id="1_7lkb1"]
+[ext_resource type="Script" path="res://Scripts/BigPurp.gd" id="2_qkiaa"]
+[ext_resource type="Texture2D" uid="uid://rfq8v84yatcf" path="res://Assets/Art/Levels/WalkingPurpleSheet.png" id="3_rhl58"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0aadj"]
+atlas = ExtResource("3_rhl58")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvo4w"]
+atlas = ExtResource("3_rhl58")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wm4b"]
+atlas = ExtResource("3_rhl58")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdut4"]
+atlas = ExtResource("3_rhl58")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7qqa"]
+atlas = ExtResource("3_rhl58")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0r88"]
+atlas = ExtResource("3_rhl58")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpvjf"]
+atlas = ExtResource("3_rhl58")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yoyfe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0aadj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvo4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wm4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdut4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7qqa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0r88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpvjf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4icd3"]
+size = Vector2(20, 37)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yt5x3"]
+size = Vector2(20, 37)
+
+[node name="Bigpurp" instance=ExtResource("1_7lkb1")]
+script = ExtResource("2_qkiaa")
+health = 3
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="0"]
+position = Vector2(1, 5.5)
+scale = Vector2(0.9, 1.55)
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_yoyfe")
+autoplay = "default"
+frame_progress = 0.573582
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hithox" index="0"]
+position = Vector2(1, 2.5)
+shape = SubResource("RectangleShape2D_4icd3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
+position = Vector2(1, 2.5)
+shape = SubResource("RectangleShape2D_yt5x3")
+
+[node name="Floorinator" type="RayCast2D" parent="." index="4"]
+position = Vector2(-15, -4)
+target_position = Vector2(0, 39)

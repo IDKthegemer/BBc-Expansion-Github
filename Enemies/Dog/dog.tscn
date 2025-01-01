@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://dqkt3tu7sko75"]
+
+[ext_resource type="PackedScene" uid="uid://ckt4y83v0yf2i" path="res://Enemies/Enemy_base/enemy_base.tscn" id="1_8aegv"]
+[ext_resource type="Script" path="res://Enemies/Dog/dog.gd" id="2_4f4vc"]
+[ext_resource type="Texture2D" uid="uid://dukookwq3fkq7" path="res://Assets/Art/Enemies/Dogsheet.png" id="3_pd00x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvp65"]
+atlas = ExtResource("3_pd00x")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnrxr"]
+atlas = ExtResource("3_pd00x")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tohb3"]
+atlas = ExtResource("3_pd00x")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3trlo"]
+atlas = ExtResource("3_pd00x")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8hu52"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvp65")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnrxr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tohb3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3trlo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ue7gb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x8p3a"]
+size = Vector2(27, 18)
+
+[node name="Dog" instance=ExtResource("1_8aegv")]
+script = ExtResource("2_4f4vc")
+health = 2
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="0"]
+position = Vector2(-0.5, 3)
+scale = Vector2(1.45, 1.3)
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+position = Vector2(-2, 2)
+sprite_frames = SubResource("SpriteFrames_8hu52")
+autoplay = "default"
+frame_progress = 0.260196
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hithox" index="0"]
+position = Vector2(0, 7)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ue7gb")
+
+[node name="Floorinator" type="RayCast2D" parent="." index="3"]
+position = Vector2(-16, 5)
+target_position = Vector2(0, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
+position = Vector2(-0.5, 8)
+shape = SubResource("RectangleShape2D_x8p3a")

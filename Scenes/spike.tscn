@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1ppyran7f5ek"]
+
+[ext_resource type="Texture2D" uid="uid://bam57tuj5f4cc" path="res://Assets/Art/Levels/Spike.png" id="1_7fkjw"]
+
+[node name="Spike" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7fkjw")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 8)
+rotation = -3.13835
+scale = Vector2(0.25, 0.5)
+polygon = PackedVector2Array(0, 32, 32, 0, -32, 0)

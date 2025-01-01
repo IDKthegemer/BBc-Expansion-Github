@@ -1,0 +1,150 @@
+[gd_scene load_steps=21 format=3 uid="uid://c20bpvqob80eg"]
+
+[ext_resource type="PackedScene" uid="uid://ckt4y83v0yf2i" path="res://Enemies/Enemy_base/enemy_base.tscn" id="1_8b7uo"]
+[ext_resource type="Script" path="res://Enemies/Bird/bird.gd" id="2_6idc7"]
+[ext_resource type="Texture2D" uid="uid://bo74n8a5si6lf" path="res://Assets/Art/Enemies/birdsheet.png" id="2_o24wc"]
+[ext_resource type="Texture2D" uid="uid://bwlpofwu85sow" path="res://Assets/Art/Enemies/birdsheet2.png" id="4_m8aa1"]
+[ext_resource type="PackedScene" uid="uid://dawh1x2sdyb8f" path="res://Scenes/Player/shooter.tscn" id="5_pr7vi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dmg6"]
+atlas = ExtResource("2_o24wc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6t2hn"]
+atlas = ExtResource("2_o24wc")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ts7pw"]
+atlas = ExtResource("2_o24wc")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xujvi"]
+atlas = ExtResource("2_o24wc")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tg3fu"]
+atlas = ExtResource("2_o24wc")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nikbl"]
+atlas = ExtResource("2_o24wc")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_reg0k"]
+atlas = ExtResource("4_m8aa1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ainqi"]
+atlas = ExtResource("4_m8aa1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnm5x"]
+atlas = ExtResource("4_m8aa1")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q05lm"]
+atlas = ExtResource("4_m8aa1")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kusw0"]
+atlas = ExtResource("4_m8aa1")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pncc4"]
+atlas = ExtResource("4_m8aa1")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_236j2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dmg6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6t2hn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ts7pw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xujvi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tg3fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nikbl")
+}],
+"loop": true,
+"name": &"Fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_reg0k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ainqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nnm5x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q05lm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kusw0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pncc4")
+}],
+"loop": true,
+"name": &"Fly2",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bklbl"]
+radius = 5.71604
+height = 22.8642
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eimwk"]
+radius = 4.24188
+height = 22.6274
+
+[node name="Bird" instance=ExtResource("1_8b7uo")]
+collision_mask = 0
+script = ExtResource("2_6idc7")
+defaultdir = 1
+health = 1
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_236j2")
+animation = &"Fly"
+frame_progress = 0.375024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+rotation = 0.831518
+shape = SubResource("CapsuleShape2D_bklbl")
+disabled = true
+
+[node name="playerinator" type="RayCast2D" parent="." index="3"]
+scale = Vector2(2.556, 2.556)
+target_position = Vector2(0, 65)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="dirtim" type="Timer" parent="." index="4"]
+wait_time = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hithox" index="0"]
+rotation = 0.761723
+shape = SubResource("CapsuleShape2D_eimwk")
+
+[node name="Shooter" parent="." index="6" instance=ExtResource("5_pr7vi")]
+speed = 145.0
+bulletype = 1
+delay = 2.0
+
+[connection signal="timeout" from="dirtim" to="." method="_on_dirtim_timeout"]
