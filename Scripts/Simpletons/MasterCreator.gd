@@ -1,7 +1,7 @@
 extends Node
 
 enum BULLET_KEY { PLAYER, ENEMY }
-enum SCENE_KEY { EXPLOSION, COINS}
+enum SCENE_KEY { EXPLOSION, COINS }
 
 const SIMPLESCENES = {
 	SCENE_KEY.EXPLOSION: preload("res://Scenes/enemy_explosion.tscn"),
