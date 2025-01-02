@@ -11,9 +11,9 @@ const GROUP_PLAYER: String =  "Player"
 var volume: int
 var volume_bar_value: float = 2 # default value
 
-var upgrades: Dictionary = {
-	jump1    = false,
-	jump2    = false,
+var gm_upgrades: Dictionary = {
+	jump1        = false,
+	jump2        = false,
 	bullet_speed = false,
 	walk_speed   = false,
 	grav_down    = false

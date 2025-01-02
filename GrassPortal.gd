@@ -25,7 +25,7 @@ func _on_area_entered(area):
 	portal.global_position = player.global_position
 	
 	Gameman.volume_bar_value = player.volume.value
-	Gameman.upgrades = player.upgrades
+	Gameman.gm_upgrades = player.upgrades
 	
 	await get_tree().create_timer(2).timeout
 	get_tree().change_scene_to_packed(nextlevel)

@@ -22,6 +22,8 @@ class_name Player
 @onready var color_rect3: ColorRect = $ColorRect/ColorRect2
 @onready var volume: HSlider = $ColorRect/ColorRect2/Volume
 
+enum PLAYER_STATE { idle, run, jump, fall, hurt}
+
 const MAXFALL: float = 400
 const INVINCFRAMES: float = 0.32
 
@@ -29,8 +31,7 @@ var jumpvelochurt: float = -100
 var jumpveloc: float = -300
 var runspeed: float = 150
 var life: float = 3
-enum PlAYER_STATE { idle, run, jump, fall, hurt}
-var state: PlAYER_STATE = PlAYER_STATE.idle 
+var state: PLAYER_STATE = PLAYER_STATE.idle 
 var invincinble: bool = false
 var coins = 0
 var can_move: bool = true
@@ -46,32 +47,13 @@ var upgrades: Dictionary = {
 	grav_down    = false
 }
 
-func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("Esc"):
-		if in_menu == false:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			color_rect.show()
-			get_tree().paused = true
-			in_menu = true
-		elif in_menu == true:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			color_rect.hide()
-			get_tree().paused = false
-			in_menu = false
-	
-	if event.is_action_released("Jump"):
-		if velocity.y < 0.0:
-			velocity *= 0.5
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	volume.value = Gameman.volume_bar_value
-	upgrades = Gameman.upgrades
+	upgrades = Gameman.gm_upgrades
 	refresh_buttons()
-	
-	print(upgrades)
-	print(Gameman.upgrades)
 	
 	color_rect.hide()
 	color_rect2.hide()
@@ -115,7 +97,25 @@ func _physics_process(delta):
 	if was_on_floor && !is_on_floor():
 		coyote_timer.start()
 	calculate_states()
+
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("Esc"):
+		if in_menu == false:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			color_rect.show()
+			get_tree().paused = true
+			in_menu = true
+		elif in_menu == true:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			color_rect.hide()
+			get_tree().paused = false
+			in_menu = false
 	
+	if event.is_action_released("Jump"):
+		if velocity.y < 0.0:
+			velocity *= 0.5
+
 func shoot() -> void:
 	if sprite.flip_h == true:
 		shooter.shoot(Vector2.LEFT)
@@ -123,8 +123,8 @@ func shoot() -> void:
 		shooter.shoot(Vector2.RIGHT)
 	
 func get_input() -> void:
-	
-	if state == PlAYER_STATE.hurt:
+
+	if state == PLAYER_STATE.hurt:
 		return
 	
 	velocity.x = 0
@@ -145,41 +145,41 @@ func get_input() -> void:
 
 func calculate_states() -> void:
 	
-	if state == PlAYER_STATE.hurt:
+	if state == PLAYER_STATE.hurt:
 		return
 	if is_on_floor() == true:
 		if velocity.x == 0:
-			set_state(PlAYER_STATE.idle)
+			set_state(PLAYER_STATE.idle)
 		else:
-			set_state(PlAYER_STATE.run)
+			set_state(PLAYER_STATE.run)
 	else:
 		if velocity.y > 0:
-			set_state(PlAYER_STATE.fall)
+			set_state(PLAYER_STATE.fall)
 		else:
-			set_state(PlAYER_STATE.jump)
+			set_state(PLAYER_STATE.jump)
 			
-func set_state(new_state: PlAYER_STATE) -> void:
+func set_state(new_state: PLAYER_STATE) -> void:
 	if new_state == state:
 		return
-	if state == PlAYER_STATE.fall:
-		if new_state == PlAYER_STATE.idle or new_state == PlAYER_STATE.run:
+	if state == PLAYER_STATE.fall:
+		if new_state == PLAYER_STATE.idle or new_state == PLAYER_STATE.run:
 			Soundman.play_clip(sounds, Soundman.SOUNDLAND)
 		
 	state = new_state
 	
 	match state:
-		PlAYER_STATE.idle:
+		PLAYER_STATE.idle:
 			animation_player.play("Idle")
-		PlAYER_STATE.run:
+		PLAYER_STATE.run:
 			animation_player.play("Run")
-		PlAYER_STATE.jump:
+		PLAYER_STATE.jump:
 			animation_player.play("jump")
-		PlAYER_STATE.fall:
+		PLAYER_STATE.fall:
 			animation_player.play("fall")
 			
 #https://www.tiktok.com/@linemaster3/video/7227636117279968538
 func getpatrickbatemanjumps() -> void:
-	set_state(PlAYER_STATE.hurt)
+	set_state(PLAYER_STATE.hurt)
 	animation_player.play("Hurt")
 	velocity.y = jumpvelochurt
 	hurt_timer.start()
@@ -219,7 +219,7 @@ func _on_ahhparytheplatypusthisismy_sigmainator_timeout():
 	invinc.stop()
 
 func _on_hurt_timer_timeout():
-	set_state(PlAYER_STATE.idle)
+	set_state(PLAYER_STATE.idle)
 
 func _on_button_pressed():
 	get_tree().paused = false
@@ -238,6 +238,7 @@ func _on_button_4_pressed():
 func _on_jump_up_1_pressed():
 	if jump_up_1.button_pressed == true:
 		jumpveloc -= 40
+		upgrades.jump1 = true
 	elif  jump_up_1.button_pressed == false:
 		jumpveloc += 40
 		
@@ -246,24 +247,28 @@ func _on_close_button_pressed():
 func _on_jump_up_2_pressed():
 	if jump_up_2.button_pressed == true:
 		jumpveloc -= 45
+		upgrades.jump2 = true
 	elif  jump_up_2.button_pressed == false:
 		jumpveloc += 45
 
 func _on_bullet_speed_pressed():
 	if bullet_speed.button_pressed == true:
 		shooter.speed += 200
+		upgrades.bullet_speed = true
 	elif bullet_speed.button_pressed == false:
 		shooter.speed -= 200
 
 func _on_walk_speed_pressed() -> void:
 	if walk_speed.button_pressed == true:
 		runspeed = 200
+		upgrades.walk_speed = true
 	if walk_speed.button_pressed == false:
 		runspeed = 150
 
 func _on_gravity_down_pressed() -> void:
 	if gravity_down.button_pressed == true:
 		gravity = 170
+		upgrades.grav_down = true
 	if gravity_down.button_pressed == false:
 		gravity = 250
 
