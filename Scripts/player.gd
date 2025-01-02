@@ -235,21 +235,25 @@ func GetCoins():
 	coins += 1
 func _on_button_4_pressed():
 	color_rect2.show()
+
+func _on_close_button_pressed():
+	color_rect2.hide()
+
 func _on_jump_up_1_pressed():
 	if jump_up_1.button_pressed == true:
 		jumpveloc -= 40
 		upgrades.jump1 = true
 	elif  jump_up_1.button_pressed == false:
 		jumpveloc += 40
-		
-func _on_close_button_pressed():
-	color_rect2.hide()
+		upgrades.jump1 = true
+
 func _on_jump_up_2_pressed():
 	if jump_up_2.button_pressed == true:
 		jumpveloc -= 45
 		upgrades.jump2 = true
 	elif  jump_up_2.button_pressed == false:
 		jumpveloc += 45
+		upgrades.jump2 = false
 
 func _on_bullet_speed_pressed():
 	if bullet_speed.button_pressed == true:
@@ -257,6 +261,7 @@ func _on_bullet_speed_pressed():
 		upgrades.bullet_speed = true
 	elif bullet_speed.button_pressed == false:
 		shooter.speed -= 200
+		upgrades.bullet_speed = false
 
 func _on_walk_speed_pressed() -> void:
 	if walk_speed.button_pressed == true:
@@ -264,6 +269,7 @@ func _on_walk_speed_pressed() -> void:
 		upgrades.walk_speed = true
 	if walk_speed.button_pressed == false:
 		runspeed = 150
+		upgrades.walk_speed = false
 
 func _on_gravity_down_pressed() -> void:
 	if gravity_down.button_pressed == true:
@@ -271,6 +277,7 @@ func _on_gravity_down_pressed() -> void:
 		upgrades.grav_down = true
 	if gravity_down.button_pressed == false:
 		gravity = 250
+		upgrades.grav_down = false
 
 func _on_button_5_pressed() -> void:
 	color_rect3.show()
