@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://csktud8cnh36d" path="res://Assets/Art/Levels/UpgradeSprite.png" id="2_8ute1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mqxwc"]
-size = Vector2(8, 32)
+size = Vector2(8, 21)
 
 [node name="BasicUpgrade" type="Area2D"]
 collision_layer = 0
@@ -12,7 +12,7 @@ collision_mask = 2
 script = ExtResource("1_vygr2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 6)
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_mqxwc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
