@@ -284,6 +284,7 @@ scale = Vector2(0.161149, 0.173797)
 text = "Upgrades"
 
 [node name="UpgradeMenu" type="ColorRect" parent="Menu"]
+visible = false
 layout_mode = 0
 offset_left = 8.31972
 offset_top = 22.0603
