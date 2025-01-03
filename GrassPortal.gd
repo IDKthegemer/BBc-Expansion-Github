@@ -6,7 +6,7 @@ extends Area2D
 @onready var sprite_2d = $Sprite2D
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var portal = $"."
-@onready var player = $"../../Player"
+@onready var player = $"../Player"
 
 func _ready():
 	animated_sprite_2d.visible = false
