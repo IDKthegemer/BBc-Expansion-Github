@@ -26,7 +26,7 @@ const MAXFALL: float = 400
 const INVINCFRAMES: float = 0.32
 
 var jumpvelochurt: float = -100
-var jumpveloc: float = -250
+var jumpveloc: float = -300
 var runspeed: float = 150
 var life: float = 3
 enum PlAYER_STATE { idle, run, jump, fall, hurt}
